@@ -11,7 +11,7 @@ If no arbitrary ids are given, random ids will be generated.
 
 ```ruby
 room = Eyeson::Room.new(id:   'ARBITRARY_ID',     # optional, e.g. to join a specific room
-                        name: 'ARBITRARY_NAME',   # required!
+                        name: 'DISPLAY_NAME',     # required!
                         user: {
                         	id:     'ARBITRARY_ID', # optional, e.g. your internal user_id
                         	name:   'DISPLAY_NAME', # required!
