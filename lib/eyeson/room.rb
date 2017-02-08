@@ -6,8 +6,7 @@ module Eyeson
 
     attr_reader :url, :access_key, :guest_token
 
-    def initialize(api_key: nil, id: nil, name: nil, user: {})
-      @api_key     = api_key
+    def initialize(id: nil, name: nil, user: {})
       @id          = id
       @user        = mapped_user(user)
       @name        = name
@@ -21,7 +20,6 @@ module Eyeson
 
     def create!
       room = Eyeson.post('/rooms',
-                         @api_key,
                          id:   @id,
                          name: @name,
                          user: @user)

@@ -13,8 +13,12 @@ gemspec
 # To use a debugger
 # gem 'byebug', group: [:development, :test]
 group :test do
-  gem 'rspec-rails', '~> 3.5'
   gem 'faker'
   gem 'mocha'
+  gem 'rspec-rails', '~> 3.5'
   gem 'simplecov', require: false
+end
+
+group :development, :test do
+  gem 'rubocop', require: false
 end
