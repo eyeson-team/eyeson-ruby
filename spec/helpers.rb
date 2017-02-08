@@ -1,12 +1,12 @@
 module Eyeson
   module ApiHelpers
     def uses_internal_api
-      expect(configuration.internal_username).to be_present
-      expect(configuration.internal_password).to be_present
+      expect(Eyeson.configuration.internal_username).to be_present
+      expect(Eyeson.configuration.internal_password).to be_present
       req = mock('REST Request')
       req.expects(:basic_auth).with(
-        configuration.internal_username,
-        configuration.internal_password
+        Eyeson.configuration.internal_username,
+        Eyeson.configuration.internal_password
       )
       req.expects(:[]=).once
       req.expects(:body=).once
