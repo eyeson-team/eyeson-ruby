@@ -34,8 +34,8 @@ module Eyeson
   module_function :request
 end
 
-require_relative 'api/config'
-require_relative 'api/internal'
-require_relative 'api/api_key'
-require_relative 'api/room'
-require_relative 'api/file_upload'
+require_relative 'eyeson/config'
+require_relative 'eyeson/internal'
+require_relative 'eyeson/api_key'
+require_relative 'eyeson/room'
+require_relative 'eyeson/file_upload'
