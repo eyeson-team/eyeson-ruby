@@ -1,11 +1,8 @@
 module Eyeson
-  # provides access to the internal eyeson api
+  # Provides access to the internal eyeson api
   module Internal
-    USERNAME = Rails.application.secrets.internal_api_username.freeze
-    PASSWORD = Rails.application.secrets.internal_api_password.freeze
-
     def post(path, params = {})
-      uri = URI.parse("#{API_URL}/internal#{path}")
+      uri = URI.parse("#{configuration.endpoint}/internal#{path}")
       req = Net::HTTP::Post.new(uri)
       req.body = params.to_json
       request(uri, req)
@@ -17,7 +14,8 @@ module Eyeson
       http.use_ssl = true
       http.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
-      req.basic_auth USERNAME, PASSWORD
+      req.basic_auth(configuration.internal_username,
+                     configuration.internal_password)
       req['Content-Type'] = 'application/json'
 
       res = http.request(req)

@@ -16,9 +16,12 @@ And then execute:
 $ bundle
 ```
 
-Or install it yourself as:
-```bash
-$ gem install eyeson
+## Configuration
+```ruby
+Eyeson.configure do |config|
+  config.endpoint = 'https://api.eyeson.team'
+  config.
+end
 ```
 
 ## Contributing

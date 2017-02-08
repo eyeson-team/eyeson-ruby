@@ -1,9 +1,19 @@
 # Eyeson API
 module Eyeson
-  API_URL = Rails.configuration.services['eyeson_api']
+  class << self
+    attr_writer :configuration
+  end
+
+  def self.configuration
+    @configuration ||= Configuration.new
+  end
+
+  def self.configure
+    yield(configuration)
+  end
 
   def post(path, api_key, params = {})
-    uri = URI.parse("#{API_URL}#{path}")
+    uri = URI.parse("#{configuration.endpoint}#{path}")
     req = Net::HTTP::Post.new(uri)
     req.body = params.to_json
     request(uri, api_key, req)
@@ -24,6 +34,7 @@ module Eyeson
   module_function :request
 end
 
+require_relative 'api/config'
 require_relative 'api/internal'
 require_relative 'api/api_key'
 require_relative 'api/room'
