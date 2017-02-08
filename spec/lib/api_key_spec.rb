@@ -1,4 +1,4 @@
-require 'rails_helper'
+require 'spec_helper'
 
 RSpec.describe Eyeson::ApiKey, type: :class do
   it 'creates api key after initialization' do

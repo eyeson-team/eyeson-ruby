@@ -1,8 +1,6 @@
 module Eyeson
   # Generates individual API key for each team
   class ApiKey
-    include Internal
-
     class ValidationFailed < StandardError
     end
 
