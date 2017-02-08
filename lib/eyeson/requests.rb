@@ -17,6 +17,7 @@ module Eyeson
     req['Authorization'] = configuration.api_key
 
     res = http.request(req)
+    return unless res.body.present?
     JSON.parse(res.body)
   end
   module_function :request

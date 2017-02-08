@@ -13,6 +13,7 @@ module Eyeson
     module_function :uses_internal_api
 
     def api_response_with(
+        body: true,
         error: nil,
         api_key: Faker::Crypto.md5,
         access_key: Faker::Crypto.md5,
@@ -20,13 +21,14 @@ module Eyeson
         gui: 'gui_url'
     )
 
-      res = mock('Eyeson result', body: {
+      res = mock('Eyeson result')
+      res.expects(:body).returns(body ? {
         error: error,
         api_key: api_key,
         access_key: access_key,
         room: { guest_token: guest_token },
         links: { gui: gui }
-      }.to_json)
+      }.to_json : nil).at_least_once
 
       req = mock('Eyeson Request')
       req.expects(:use_ssl=).at_least_once

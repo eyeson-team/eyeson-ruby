@@ -19,6 +19,7 @@ module Eyeson
       req['Content-Type'] = 'application/json'
 
       res = http.request(req)
+      return unless res.body.present?
       JSON.parse(res.body)
     end
     module_function :request
