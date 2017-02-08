@@ -1,6 +1,28 @@
 # Eyeson
 Internal eyeson api rails sdk for service app implementation
 
+## Installation
+Add this line to your application's Gemfile:
+
+```ruby
+gem 'eyeson'
+```
+
+And then execute:
+```bash
+$ bundle
+```
+
+## Configuration
+```ruby
+Eyeson.configure do |config|
+  config.api_key  = 'YOUR_API_KEY'
+  config.endpoint = 'https://api.eyeson.team'
+  config.internal_username = ''
+  config.internal_password = ''
+end
+```
+
 ## Usage
 
 ### Join a meeting room
@@ -23,28 +45,6 @@ The meeting room will be available immediately:
 
 ```ruby
 redirect_to room.url
-```
-
-## Installation
-Add this line to your application's Gemfile:
-
-```ruby
-gem 'eyeson'
-```
-
-And then execute:
-```bash
-$ bundle
-```
-
-## Configuration
-```ruby
-Eyeson.configure do |config|
-  config.api_key  = 'YOUR_API_KEY'
-  config.endpoint = 'https://api.eyeson.team'
-  config.internal_username = ''
-  config.internal_password = ''
-end
 ```
 
 ## License
