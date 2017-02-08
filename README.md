@@ -20,7 +20,8 @@ $ bundle
 ```ruby
 Eyeson.configure do |config|
   config.endpoint = 'https://api.eyeson.team'
-  config.
+  config.internal_username = ''
+  config.internal_password = ''
 end
 ```
 
