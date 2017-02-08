@@ -19,6 +19,7 @@ $ bundle
 ## Configuration
 ```ruby
 Eyeson.configure do |config|
+  config.api_key  = 'YOUR_API_KEY'
   config.endpoint = 'https://api.eyeson.team'
   config.internal_username = ''
   config.internal_password = ''
