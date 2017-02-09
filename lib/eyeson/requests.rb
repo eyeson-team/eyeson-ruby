@@ -17,6 +17,8 @@ module Eyeson
     req['Authorization'] = configuration.api_key
 
     res = http.request(req)
+    Rails.logger.info "REQUESTING to #{uri} with #{req.inspect}"
+    Rails.logger.info "RESPONSE: #{res.inspect}"
     #return unless res.body.present?
     JSON.parse(res.body)
   end
