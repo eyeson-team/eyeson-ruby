@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 RSpec.describe Eyeson::ApiKey, type: :class do
-  it 'creates api key after initialization' do
+  it 'should create api key after initialization' do
     uses_internal_api
     api_response_with(api_key: '123')
 
@@ -9,14 +9,14 @@ RSpec.describe Eyeson::ApiKey, type: :class do
     expect(api.key).to eq('123')
   end
 
-  it 'raises errors' do
+  it 'should raise errors' do
     uses_internal_api
     api_response_with(error: 'some_error')
     expect { Eyeson::ApiKey.new(name: Faker::Team.name, email: Faker::Internet.email) }
       .to raise_error(Eyeson::ApiKey::ValidationFailed, 'some_error')
   end
 
-  it 'uses basic auth for internal api' do
+  it 'should uses basic auth for internal api' do
     uses_internal_api
     api_response_with
     Eyeson::ApiKey.new(name: Faker::Team.name, email: Faker::Internet.email)

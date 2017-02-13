@@ -16,14 +16,14 @@ RSpec.describe Eyeson::Internal, type: :class do
     )
   end
 
-  it 'sets acccessor variables after initialization' do
+  it 'should set acccessor variables after initialization' do
     api_response_with
     expect(room.url).to be_present
     expect(room.access_key).to be_present
     expect(room.guest_token).to be_present
   end
 
-  it 'raises errors' do
+  it 'should raise errors' do
     api_response_with(error: 'some_error')
     expect { room }.to raise_error(Eyeson::Room::ValidationFailed, 'some_error')
   end

@@ -4,12 +4,16 @@ module Eyeson
     class ValidationFailed < StandardError
     end
 
-    def initialize(access_key, url)
+    attr_accessor :file
+
+    def initialize(access_key)
       @access_key = access_key
-      Thread.new do
-        @file = download_from(url)
-        upload!
-      end.join
+      @file       = nil
+    end
+
+    def upload_from(url)
+      @file = download_from(url)
+      upload!
     end
 
     private
@@ -27,10 +31,10 @@ module Eyeson
     end
 
     def upload!
-      file = Eyeson.post("/rooms/#{@access_key}/files",
-                         file: @file)
+      upload = Eyeson.post("/rooms/#{@access_key}/files",
+                           file: @file)
 
-      raise ValidationFailed, file['error'] if file['error'].present?
+      raise ValidationFailed, upload['error'] if upload['error'].present?
     end
   end
 end
