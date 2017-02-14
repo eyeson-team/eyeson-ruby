@@ -5,10 +5,10 @@ RSpec.describe Eyeson, type: :class do
 		RestClient::Request.expects(:execute).with(
       method: :post,
       url: 'https://api.eyeson.team/test',
+      payload: {},
       headers: {
-        'Authorization' => '123',
-        'Accept' => 'application/json',
-        params: {}
+        authorization: '123',
+        accept: 'application/json'
       }
     ).returns(mock('Response', body: {}))
     Eyeson.post('/test')

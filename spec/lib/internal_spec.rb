@@ -5,10 +5,8 @@ RSpec.describe Eyeson::Internal, type: :class do
 		RestClient::Request.expects(:execute).with(
       method: :post,
       url: 'https://api.eyeson.team/internal/test',
-      headers: {
-        'Accept' => 'application/json',
-        params: {}
-      },
+      payload: {},
+      headers: { accept: 'application/json' },
       user: '',
       password: ''
     ).returns(mock('Response', body: {}))

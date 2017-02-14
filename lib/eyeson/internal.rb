@@ -10,8 +10,8 @@ module Eyeson
       res = RestClient::Request.execute(
         method: method,
         url: "#{Eyeson.configuration.endpoint}/internal#{path}",
-        headers: { 'Accept' => 'application/json',
-                   params: params },
+        payload: params,
+        headers: { accept: 'application/json' },
         user: Eyeson.configuration.internal_username,
         password: Eyeson.configuration.internal_password
       )

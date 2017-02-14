@@ -9,9 +9,9 @@ module Eyeson
     res = RestClient::Request.execute(
       method: method,
       url: configuration.endpoint + path,
-      headers: { 'Authorization' => configuration.api_key,
-                 'Accept' => 'application/json',
-                 params: params }
+      payload: params,
+      headers: { authorization: configuration.api_key,
+                 accept: 'application/json' }
     )
     return unless res.body.present?
     JSON.parse(res.body)
