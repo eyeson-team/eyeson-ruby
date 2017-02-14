@@ -12,23 +12,12 @@ module Eyeson
     end
 
     def upload_from(url)
-      @file = download_from(url)
+      @file = open(url)
       upload!
+      @file.unlink
     end
 
     private
-
-    def download_from(url)
-      uri = URI.parse(url)
-      Net::HTTP.start(uri.host, uri.port) do |http|
-        resp = http.get(uri.path)
-        file = Tempfile.new(File.basename(uri.path))
-        file.binmode
-        file.write(resp.body)
-        file.flush
-        file
-      end
-    end
 
     def upload!
       upload = Eyeson.post("/rooms/#{@access_key}/files", file: @file)
