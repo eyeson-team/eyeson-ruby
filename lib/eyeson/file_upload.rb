@@ -22,7 +22,7 @@ module Eyeson
       uri = URI.parse(url)
       Net::HTTP.start(uri.host, uri.port) do |http|
         resp = http.get(uri.path)
-        file = Tempfile.new('presentation')
+        file = Tempfile.new(File.basename(uri.path))
         file.binmode
         file.write(resp.body)
         file.flush
