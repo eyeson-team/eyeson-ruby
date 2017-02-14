@@ -14,7 +14,7 @@ module Eyeson
     def upload_from(url)
       @file = open(url)
       upload!
-      @file.unlink
+      @file.unlink if @file.present?
     end
 
     private

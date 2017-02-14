@@ -11,15 +11,9 @@ RSpec.describe Eyeson::FileUpload, type: :class do
     upload.send(:upload!)
   end
 
-  it 'should download a tempfile from url' do
-    uri = URI.parse(Faker::Internet.url)
-    Net::HTTP.expects(:start).with(uri.host, uri.port)
-    upload.send(:download_from, uri.to_s)
-  end
-
   it 'should upload a downloadable file' do
     url = Faker::Internet.url
-    upload.expects(:download_from).with(url)
+    upload.expects(:open).with(url)
     upload.expects(:upload!)
     upload.upload_from(url)
   end
