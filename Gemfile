@@ -12,6 +12,9 @@ gemspec
 
 # To use a debugger
 # gem 'byebug', group: [:development, :test]
+
+gem 'rest-client'
+
 group :test do
   gem 'faker'
   gem 'mocha'

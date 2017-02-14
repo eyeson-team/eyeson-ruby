@@ -17,19 +17,19 @@ RSpec.describe Eyeson::Internal, type: :class do
   end
 
   it 'should set acccessor variables after initialization' do
-    api_response_with
+    expects_api_response_with
     expect(room.url).to be_present
     expect(room.access_key).to be_present
     expect(room.guest_token).to be_present
   end
 
   it 'should raise errors' do
-    api_response_with(error: 'some_error')
+    expects_api_response_with(error: 'some_error')
     expect { room }.to raise_error(Eyeson::Room::ValidationFailed, 'some_error')
   end
 
   it 'should contain correct user fields in mapped_user' do
-    api_response_with
+    expects_api_response_with
     mapped = room.send(:mapped_user, user)
     expect(mapped[:id]).to eq(user[:email])
     expect(mapped[:name]).to eq(user[:name])

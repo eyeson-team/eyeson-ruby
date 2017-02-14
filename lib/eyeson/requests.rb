@@ -1,22 +1,18 @@
 # Provides REST methods
 module Eyeson
   def post(path, params = {})
-    uri = URI.parse("#{configuration.endpoint}#{path}")
-    req = Net::HTTP::Post.new(uri)
-    req.body = params.to_json
-    request(uri, req)
+    request(:post, path, params)
   end
   module_function :post
 
-  def request(uri, req)
-    http = Net::HTTP.new(uri.host, uri.port)
-    http.use_ssl = true
-    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-
-    req['Content-Type'] = 'application/json'
-    req['Authorization'] = configuration.api_key
-
-    res = http.request(req)
+  def request(method, path, params)
+    res = RestClient::Request.execute(
+      method: method,
+      url: configuration.endpoint + path,
+      headers: { 'Authorization' => configuration.api_key,
+                 'Accept' => 'application/json',
+                 params: params }
+    )
     return unless res.body.present?
     JSON.parse(res.body)
   end

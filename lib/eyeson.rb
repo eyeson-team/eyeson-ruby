@@ -1,5 +1,7 @@
 # Eyeson API
 module Eyeson
+  require 'rest_client'
+
   class << self
     attr_writer :configuration
   end

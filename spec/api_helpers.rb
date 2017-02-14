@@ -1,21 +1,20 @@
 module Eyeson
   module ApiHelpers
-    def uses_internal_api
-      req = mock('REST Request')
-      req.expects(:basic_auth).with(
-        Eyeson.configuration.internal_username,
-        Eyeson.configuration.internal_password
-      )
-      req.expects(:[]=).once
-      req.expects(:body=).once
-      Net::HTTP::Post.expects(:new).returns(req)
+    def expects_internal_api_response_with(
+      api_key: Faker::Crypto.md5,
+      error: nil
+    )
+      Eyeson::Internal.expects(:request)
+                      .returns({
+                        'api_key' => api_key,
+                        'error'   => error
+                      })
     end
-    module_function :uses_internal_api
+    module_function :expects_internal_api_response_with
 
-    def api_response_with(
+    def expects_api_response_with(
         body: true,
         error: nil,
-        api_key: Faker::Crypto.md5,
         access_key: Faker::Crypto.md5,
         guest_token: Faker::Crypto.md5,
         gui: 'gui_url'
@@ -24,18 +23,13 @@ module Eyeson
       res = mock('Eyeson result')
       res.expects(:body).returns(body ? {
         error: error,
-        api_key: api_key,
         access_key: access_key,
         room: { guest_token: guest_token },
         links: { gui: gui }
       }.to_json : nil).at_least_once
 
-      req = mock('Eyeson Request')
-      req.expects(:use_ssl=).at_least_once
-      req.expects(:verify_mode=).at_least_once
-      req.expects(:request).returns(res).at_least_once
-      Net::HTTP.expects(:new).returns(req).at_least_once
+      RestClient::Request.expects(:execute).returns(res)
     end
-    module_function :api_response_with
+    module_function :expects_api_response_with
   end
 end
