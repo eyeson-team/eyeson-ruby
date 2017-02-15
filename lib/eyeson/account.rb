@@ -20,9 +20,7 @@ module Eyeson
       @confirmation_url.nil?
     end
 
-    private
-
-    def confirmed?(email)
+    def self.confirmed?(email)
       url = "#{Eyeson.configuration.account_endpoint}/confirmation"
       req = RestClient::Request.new(
         method: :get,
