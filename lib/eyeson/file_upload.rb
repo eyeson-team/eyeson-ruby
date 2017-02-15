@@ -12,9 +12,15 @@ module Eyeson
     end
 
     def upload_from(url)
+      Tempfile.class_eval do
+        attr_accessor :original_filename
+      end
+
       @file = open(url)
+      @file.original_filename = File.basename(URI.parse(url).path)
+
       upload!
-      @file.unlink if @file.present?
+      @file.unlink
     end
 
     private
