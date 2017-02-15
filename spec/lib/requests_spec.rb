@@ -16,8 +16,11 @@ RSpec.describe Eyeson, type: :class do
 	end
 
   it 'should execute request in response_for method' do
-    res = mock('Response', body: nil)
+    body = { field: 'value' }.to_json
+    res = mock('Response')
+    res.expects(:body).returns(body).twice
     req = mock('Request', execute: res)
+    JSON.expects(:parse).with(body)
     Eyeson.response_for(req)
   end
 
