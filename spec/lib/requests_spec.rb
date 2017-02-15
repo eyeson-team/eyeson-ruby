@@ -4,7 +4,7 @@ RSpec.describe Eyeson, type: :class do
 	it 'should use correct config in post' do
 		RestClient::Request.expects(:new).with(
       method: :post,
-      url: 'https://api.eyeson.team/test',
+      url: 'https://api.localhost.test/test',
       payload: {},
       headers: {
         authorization: '123',

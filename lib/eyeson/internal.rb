@@ -9,7 +9,7 @@ module Eyeson
     def request(method, path, params)
       req = RestClient::Request.new(
         method: method,
-        url: "#{Eyeson.configuration.endpoint}/internal#{path}",
+        url: "#{Eyeson.configuration.api_endpoint}/internal#{path}",
         payload: params,
         headers: { accept: 'application/json' },
         user: Eyeson.configuration.internal_username,

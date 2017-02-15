@@ -8,7 +8,7 @@ module Eyeson
   def request(method, path, params)
     req = RestClient::Request.new(
       method: method,
-      url: configuration.endpoint + path,
+      url: configuration.api_endpoint + path,
       payload: params,
       headers: { authorization: configuration.api_key,
                  accept: 'application/json' }
