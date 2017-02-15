@@ -7,7 +7,7 @@ module Eyeson
     module_function :post
 
     def request(method, path, params)
-      res = RestClient::Request.execute(
+      req = RestClient::Request.new(
         method: method,
         url: "#{Eyeson.configuration.endpoint}/internal#{path}",
         payload: params,
@@ -15,8 +15,7 @@ module Eyeson
         user: Eyeson.configuration.internal_username,
         password: Eyeson.configuration.internal_password
       )
-      return unless res.body.present?
-      JSON.parse(res.body)
+      Eyeson.response_for(req)
     end
     module_function :request
   end

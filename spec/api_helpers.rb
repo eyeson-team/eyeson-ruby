@@ -4,11 +4,11 @@ module Eyeson
       api_key: Faker::Crypto.md5,
       error: nil
     )
-      Eyeson::Internal.expects(:request)
-                      .returns({
-                        'api_key' => api_key,
-                        'error'   => error
-                      })
+      Eyeson.expects(:response_for)
+            .returns({
+              'api_key' => api_key,
+              'error'   => error
+            })
     end
     module_function :expects_internal_api_response_with
 
@@ -20,15 +20,12 @@ module Eyeson
         gui: 'gui_url'
     )
 
-      res = mock('Eyeson result')
-      res.expects(:body).returns(body ? {
-        error: error,
-        access_key: access_key,
-        room: { guest_token: guest_token },
-        links: { gui: gui }
-      }.to_json : nil).at_least_once
-
-      RestClient::Request.expects(:execute).returns(res)
+      Eyeson.expects(:response_for).returns(body ? {
+        'error' => error,
+        'access_key' => access_key,
+        'room' => { 'guest_token' => guest_token },
+        'links' => { 'gui' => gui }
+      } : nil)
     end
     module_function :expects_api_response_with
   end

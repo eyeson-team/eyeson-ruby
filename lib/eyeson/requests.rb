@@ -6,15 +6,25 @@ module Eyeson
   module_function :post
 
   def request(method, path, params)
-    res = RestClient::Request.execute(
+    req = RestClient::Request.new(
       method: method,
       url: configuration.endpoint + path,
       payload: params,
       headers: { authorization: configuration.api_key,
                  accept: 'application/json' }
     )
+    response_for(req)
+  end
+  module_function :request
+
+  def response_for(req)
+    res = begin
+      req.execute
+    rescue RestClient::ExceptionWithResponse => e
+      e.response
+    end
     return unless res.body.present?
     JSON.parse(res.body)
   end
-  module_function :request
+  module_function :response_for
 end
