@@ -25,7 +25,7 @@ module Eyeson
         'access_key' => access_key,
         'room' => { 'guest_token' => guest_token },
         'links' => { 'gui' => gui }
-      } : nil)
+      } : {})
     end
     module_function :expects_api_response_with
   end

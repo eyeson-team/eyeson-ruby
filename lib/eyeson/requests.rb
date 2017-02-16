@@ -23,7 +23,7 @@ module Eyeson
     rescue RestClient::ExceptionWithResponse => e
       e.response
     end
-    return unless res.body.present?
+    return {} unless res.body.present?
     JSON.parse(res.body)
   end
   module_function :response_for

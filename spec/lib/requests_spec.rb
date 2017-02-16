@@ -38,6 +38,6 @@ RSpec.describe Eyeson, type: :class do
 
   it 'should handle empty response' do
     expects_api_response_with(body: false)
-    expect(Eyeson.post('/test')).to be_nil
+    expect(Eyeson.post('/test')).to eq({})
   end
 end

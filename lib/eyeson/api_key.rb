@@ -18,5 +18,9 @@ module Eyeson
       raise ValidationFailed, team['error'] if team['error'].present?
       ApiKey.new(team['api_key'])
     end
+
+    def webhooks
+      Webhook.new(@key)
+    end
   end
 end

@@ -13,4 +13,11 @@ RSpec.describe Eyeson::ApiKey, type: :class do
     expect { Eyeson::ApiKey.create!(name: Faker::Team.name, email: Faker::Internet.email) }
       .to raise_error(Eyeson::ApiKey::ValidationFailed, 'some_error')
   end
+
+  it 'should provide a webhook instance' do
+    key = '12345'
+    api = Eyeson::ApiKey.new(key)
+    Eyeson::Webhook.expects(:new).with(key)
+    expect(api.webhooks).kind_of?(Eyeson::Webhook)
+  end
 end
