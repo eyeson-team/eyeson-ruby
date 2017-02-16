@@ -4,33 +4,27 @@ module Eyeson
     class ValidationFailed < StandardError
     end
 
-    attr_reader :url, :access_key, :guest_token
+    attr_reader :url, :access_key
 
-    def initialize(id: nil, name: nil, user: {})
-      @id          = id
-      @user        = mapped_user(user)
-      @name        = name
-      @url         = nil
-      @access_key  = nil
-      @guest_token = nil
-      create!
+    def initialize(url: nil, access_key: nil)
+      @url        = url
+      @access_key = access_key
     end
 
-    private
-
-    def create!
+    def self.join(id: nil, name: nil, user: {})
       room = Eyeson.post('/rooms',
-                         id:   @id,
-                         name: @name,
-                         user: @user)
+                         id:   id,
+                         name: name,
+                         user: mapped_user(user))
 
       raise ValidationFailed, room['error'] if room['error'].present?
-      @url         = room['links']['gui']
-      @access_key  = room['access_key']
-      @guest_token = room['room']['guest_token']
+      Room.new(
+        url:        room['links']['gui'],
+        access_key: room['access_key']
+      )
     end
 
-    def mapped_user(user)
+    def self.mapped_user(user)
       {
         id:         user[:email],
         name:       user[:name],
