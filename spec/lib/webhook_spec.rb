@@ -5,6 +5,11 @@ RSpec.describe Eyeson::Webhook, type: :class do
     Eyeson::Webhook.new('12345')
   end
 
+  it 'should configure eyeson with api key' do
+    Eyeson.configuration.expects(:api_key=).with('12345')
+    webhook
+  end
+
   it 'should create webhook' do
     url   = Faker::Internet.url
     types = %w(type1, type2)

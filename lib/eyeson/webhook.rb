@@ -5,7 +5,7 @@ module Eyeson
     end
 
     def initialize(api_key)
-      @api_key = api_key
+      Eyeson.configuration.api_key = api_key
     end
 
     def create!(url: nil, types: [])
