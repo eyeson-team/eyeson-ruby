@@ -19,7 +19,6 @@ RSpec.describe Eyeson::FileUpload, type: :class do
     Tempfile.expects(:class_eval)
     tempfile = mock('Tempfile')
     tempfile.expects(:original_filename=).with('my_file.pdf')
-    tempfile.expects(:unlink)
 
     upload.expects(:open).with(url).returns(tempfile)
     upload.expects(:upload!)

@@ -20,7 +20,6 @@ module Eyeson
       @file.original_filename = File.basename(URI.parse(url).path)
 
       upload!
-      @file.unlink
     end
 
     private
