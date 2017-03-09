@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.describe Eyeson::Internal, type: :class do
+RSpec.describe Eyeson::Room, type: :class do
   let(:user) do
     {
       id:     Faker::Crypto.md5,
