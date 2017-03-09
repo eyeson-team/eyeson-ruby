@@ -23,8 +23,6 @@ module Eyeson
       Webhook.new(@key)
     end
 
-    private
-
     def self.post(path, params)
       req = RestClient::Request.new(
         method: :post,
