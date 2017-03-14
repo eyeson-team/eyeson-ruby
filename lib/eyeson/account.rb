@@ -35,6 +35,7 @@ module Eyeson
     def self.mapped_user(user)
       {
         id:         user[:email],
+        email:      user[:email],
         name:       user[:name],
         avatar:     user[:avatar]
       }
