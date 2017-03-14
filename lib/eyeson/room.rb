@@ -15,21 +15,13 @@ module Eyeson
       room = Eyeson.post('/rooms',
                          id:   id,
                          name: name,
-                         user: mapped_user(user))
+                         user: Account.mapped_user(user))
 
       raise ValidationFailed, room['error'] if room['error'].present?
       Room.new(
         url:        room['links']['gui'],
         access_key: room['access_key']
       )
-    end
-
-    def self.mapped_user(user)
-      {
-        id:         user[:email],
-        name:       user[:name],
-        avatar:     user[:avatar]
-      }
     end
   end
 end

@@ -63,11 +63,16 @@ redirect_to room.url
 - Tryout end date
 - Number of videomeetings total (obtained by count of events for videomeetings)
 - Number of videomeetings for each integration (obtained by count of events for specific integration)
+- Number of presentations
+- Number of screencastings
 
 # Events
 
 - User registered account
 - User made a videomeeting (+ system info)
+
+# Accounts/Intercom API:
+
 
 ## License
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).

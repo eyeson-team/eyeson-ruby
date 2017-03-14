@@ -10,26 +10,35 @@ module Eyeson
       @confirmation_url = confirmation_url
     end
 
-    def self.find_by(email: nil)
-      confirmed = confirmed?(email)
+    def self.find_or_initialize_by(user: {})
+      confirmed = confirmed?(user: user)
       confirmation_url = confirmed['create_url'] if confirmed.present?
       Account.new(confirmation_url: confirmation_url)
     end
 
-    def present?
-      @confirmation_url.nil?
+    def new_record?
+      @confirmation_url.present?
     end
 
-    def self.confirmed?(email)
+    def self.confirmed?(user: {})
       url = "#{Eyeson.configuration.account_endpoint}/confirmation"
       req = RestClient::Request.new(
         method: :get,
-        url: "#{url}?user[email]=#{CGI.escape(email)}",
+        url: url,
         headers: { accept: 'application/json' },
         user: Eyeson.configuration.internal_username,
-        password: Eyeson.configuration.internal_password
+        password: Eyeson.configuration.internal_password,
+        payload: { user: user }
       )
       Eyeson.response_for(req)
+    end
+
+    def self.mapped_user(user)
+      {
+        id:         CGI.escape(user[:email]),
+        name:       user[:name],
+        avatar:     user[:avatar]
+      }
     end
   end
 end
