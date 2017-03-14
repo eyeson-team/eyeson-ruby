@@ -34,7 +34,7 @@ module Eyeson
 
     def self.mapped_user(user)
       {
-        id:         CGI.escape(user[:email]),
+        id:         user[:email],
         name:       user[:name],
         avatar:     user[:avatar]
       }
