@@ -25,10 +25,9 @@ module Eyeson
       req = RestClient::Request.new(
         method: :get,
         url: url,
-        headers: { accept: 'application/json' },
+        headers: { accept: 'application/json', params: { user: user } },
         user: Eyeson.configuration.internal_username,
-        password: Eyeson.configuration.internal_password,
-        payload: { user: user }
+        password: Eyeson.configuration.internal_password
       )
       Eyeson.response_for(req)
     end
