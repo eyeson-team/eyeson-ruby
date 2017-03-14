@@ -24,7 +24,7 @@ module Eyeson
       url = "#{Eyeson.configuration.account_endpoint}/confirmation"
       req = RestClient::Request.new(
         method: :get,
-        url: "#{url}?email=#{CGI.escape(email)}",
+        url: "#{url}?user[email]=#{CGI.escape(email)}",
         headers: { accept: 'application/json' },
         user: Eyeson.configuration.internal_username,
         password: Eyeson.configuration.internal_password
