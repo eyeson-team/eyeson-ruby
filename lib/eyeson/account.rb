@@ -11,7 +11,7 @@ module Eyeson
     end
 
     def self.find_or_initialize_by(user: {})
-      confirmed = confirmed?(user: user)
+      confirmed = confirmed?(user: mapped_user(user))
       confirmation_url = confirmed['create_url'] if confirmed.present?
       Account.new(confirmation_url: confirmation_url)
     end
