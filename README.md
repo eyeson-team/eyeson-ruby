@@ -48,5 +48,26 @@ The meeting room will be available immediately:
 redirect_to room.url
 ```
 
+### Intercom
+
+## Info requested by marketing team:
+
+# Fields
+
+- First seen date
+- Last seen date
+- First seen platform (integration system, tryout, account portal, ...)
+- First seen Source (videomeeting, newsletter, guest join, ...)
+- Account registration date (signup, onboarding)
+- Tryout start date
+- Tryout end date
+- Number of videomeetings total (obtained by count of events for videomeetings)
+- Number of videomeetings for each integration (obtained by count of events for specific integration)
+
+# Events
+
+- User registered account
+- User made a videomeeting (+ system info)
+
 ## License
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
