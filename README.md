@@ -19,6 +19,7 @@ Eyeson.configure do |config|
   config.api_key           = 'YOUR_API_KEY'
   config.api_endpoint      = 'https://api.eyeson.team'
   config.account_endpoint  = 'https://accounts.eyeson.team/api'
+  config.account_api_key   = ''
   config.internal_username = ''
   config.internal_password = ''
 end

@@ -15,6 +15,18 @@ RSpec.describe Eyeson::Account, type: :class do
     expect(Eyeson::Account.find_or_initialize_by(user: user)).kind_of? Eyeson::Account
   end
 
+  it 'should authenticate in accounts api' do
+    RestClient::Request.expects(:new).with(
+      method: :get,
+      url: 'https://account.eyeson.team/api/confirmation',
+      headers: { authorization: Eyeson.configuration.account_api_key,
+                 accept: 'application/json',
+                 params: { user: user } }
+    )
+    Eyeson.expects(:response_for)
+    Eyeson::Account.confirmed?(user: user)
+  end
+
   it 'should return new_record? = false if confirmed' do
     RestClient::Request.expects(:new)
     Eyeson.expects(:response_for).returns(nil)
