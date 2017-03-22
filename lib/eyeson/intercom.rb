@@ -6,7 +6,8 @@ module Eyeson
         method: :post,
         url: "#{Eyeson.configuration.account_endpoint}/intercom",
         payload: params,
-        headers: { accept: 'application/json' }
+        headers: { authorization: Eyeson.configuration.account_api_key,
+                   accept: 'application/json' }
       )
       Eyeson.response_for(req)
     end

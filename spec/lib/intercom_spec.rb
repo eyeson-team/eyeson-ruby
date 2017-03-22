@@ -6,7 +6,8 @@ RSpec.describe Eyeson::Intercom, type: :class do
       method: :post,
       url: 'https://account.localhost.test/intercom',
       payload: { content: true },
-      headers: { accept: 'application/json' }
+      headers: { authorization: Eyeson.configuration.account_api_key,
+                 accept: 'application/json' }
     )
     Eyeson.expects(:response_for)
     Eyeson::Intercom.post(content: true)
