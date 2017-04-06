@@ -3,15 +3,12 @@ module Eyeson
   class Configuration
     attr_accessor :api_key, :api_endpoint
     attr_accessor :account_endpoint, :account_api_key
-    attr_accessor :internal_username, :internal_password
 
     def initialize
       @api_key           = ''
       @api_endpoint      = 'https://api.eyeson.team'
-      @account_endpoint  = 'https://account.eyeson.team/api'
       @account_api_key   = ''
-      @internal_username = ''
-      @internal_password = ''
+      @account_endpoint  = 'https://account.eyeson.team/api'
     end
   end
 end
