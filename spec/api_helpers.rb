@@ -1,17 +1,5 @@
 module Eyeson
   module ApiHelpers
-    def expects_internal_api_response_with(
-      api_key: Faker::Crypto.md5,
-      error: nil
-    )
-      Eyeson.expects(:response_for)
-            .returns({
-              'api_key' => api_key,
-              'error'   => error
-            })
-    end
-    module_function :expects_internal_api_response_with
-
     def expects_api_response_with(
         body: true,
         error: nil,

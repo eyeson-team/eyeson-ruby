@@ -5,6 +5,11 @@ module Eyeson
   end
   module_function :post
 
+  def delete(path, params = {})
+    request(:delete, path, params)
+  end
+  module_function :delete
+
   def request(method, path, params)
     req = RestClient::Request.new(
       method: method,

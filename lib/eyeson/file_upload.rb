@@ -1,5 +1,5 @@
 module Eyeson
-  # Manages conf rooms
+  # Manages file uploads
   class FileUpload
     class ValidationFailed < StandardError
     end
