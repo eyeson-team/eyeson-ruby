@@ -8,11 +8,12 @@ module Eyeson
       @access_key = access_key
     end
 
-    def create(image: nil, index: 1)
+    def create(image: nil, index: 1, layout: 'auto')
       upload = Eyeson.post(
         "/rooms/#{@access_key}/layers",
         image: image,
-        'z-index' => index
+        'z-index' => index,
+        layout: layout
       )
       raise ValidationFailed, upload['error'] if upload['error'].present?
     end

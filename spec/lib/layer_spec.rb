@@ -13,8 +13,9 @@ RSpec.describe Eyeson::Layer, type: :class do
   it 'should set layer by image and index' do
     Eyeson.expects(:post).with('/rooms/access_key/layers',
                                 image: image,
-                                'z-index' => -1).returns({})
-    layer.create(image: image, index: -1)
+                                'z-index' => -1,
+                                layout: 'fixed').returns({})
+    layer.create(image: image, index: -1, layout: 'fixed')
   end
 
   it 'should clear layer by index' do
