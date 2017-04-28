@@ -10,12 +10,23 @@ RSpec.describe Eyeson::Layer, type: :class do
     Tempfile.new('image')
   end
 
-  it 'should set layer by image and index' do
+  it 'should set layer by file and index' do
     Eyeson.expects(:post).with('/rooms/access_key/layers',
-                                image: image,
+                                file: image,
+                                url: nil,
                                 'z-index' => -1,
                                 layout: 'fixed').returns({})
-    layer.create(image: image, index: -1, layout: 'fixed')
+    layer.create(file: image, index: -1, layout: 'fixed')
+  end
+
+  it 'should set layer by url' do
+    url = Faker::Internet.url
+    Eyeson.expects(:post).with('/rooms/access_key/layers',
+                                file: nil,
+                                url: url,
+                                'z-index' => 1,
+                                layout: 'fixed').returns({})
+    layer.create(url: url, layout: 'fixed')
   end
 
   it 'should clear layer by index' do

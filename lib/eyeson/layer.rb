@@ -8,10 +8,11 @@ module Eyeson
       @access_key = access_key
     end
 
-    def create(image: nil, index: 1, layout: 'auto')
+    def create(file: nil, url: nil, index: 1, layout: 'auto')
       upload = Eyeson.post(
         "/rooms/#{@access_key}/layers",
-        image: image,
+        file: file,
+        url: url,
         'z-index' => index,
         layout: layout
       )
