@@ -16,7 +16,7 @@ gemspec
 group :test do
   gem 'faker'
   gem 'mocha'
-  gem 'rspec-rails', '~> 3.5'
+  gem 'rspec'
   gem 'simplecov', require: false
 end
 
