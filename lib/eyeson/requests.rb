@@ -14,7 +14,7 @@ module Eyeson
     req = RestClient::Request.new(
       method: method,
       url: configuration.api_endpoint + path,
-      payload: params,
+      payload: params.compact,
       headers: { authorization: configuration.api_key,
                  accept: 'application/json' }
     )
@@ -28,7 +28,7 @@ module Eyeson
     rescue RestClient::ExceptionWithResponse => e
       e.response
     end
-    return {} unless res.body.present?
+    return {} if res.body.blank?
     JSON.parse(res.body)
   end
   module_function :response_for
