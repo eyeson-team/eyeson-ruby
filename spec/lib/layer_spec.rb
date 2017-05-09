@@ -15,11 +15,21 @@ RSpec.describe Eyeson::Layer, type: :class do
                                 file: image,
                                 url: nil,
                                 'z-index' => -1,
-                                layout: 'fixed').returns({})
-    layer.create(file: image, index: -1, layout: 'fixed')
+                                layout: nil).returns({})
+    layer.create(file: image, index: -1)
   end
 
   it 'should set layer by url' do
+    url = Faker::Internet.url
+    Eyeson.expects(:post).with('/rooms/access_key/layers',
+                                file: nil,
+                                url: url,
+                                'z-index' => 1,
+                                layout: nil).returns({})
+    layer.create(url: url)
+  end
+
+  it 'should set layer by url and layer' do
     url = Faker::Internet.url
     Eyeson.expects(:post).with('/rooms/access_key/layers',
                                 file: nil,
@@ -30,8 +40,13 @@ RSpec.describe Eyeson::Layer, type: :class do
   end
 
   it 'should clear layer by index' do
-    Eyeson.expects(:delete).with('/rooms/access_key/layers/-1')
+    Eyeson.expects(:delete).with('/rooms/access_key/layers/-1', layout: nil)
     layer.destroy(index: -1)
+  end
+
+  it 'should clear layer by index and layer' do
+    Eyeson.expects(:delete).with('/rooms/access_key/layers/-1', layout: 'auto')
+    layer.destroy(index: -1, layout: 'auto')
   end
 
   it 'should raise errors' do

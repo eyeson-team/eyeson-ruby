@@ -19,8 +19,8 @@ module Eyeson
       raise ValidationFailed, upload['error'] if upload['error'].present?
     end
 
-    def destroy(index: 1)
-      Eyeson.delete("/rooms/#{@access_key}/layers/#{index}")
+    def destroy(index: 1, layout: nil)
+      Eyeson.delete("/rooms/#{@access_key}/layers/#{index}", layout: layout)
     end
   end
 end
