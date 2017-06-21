@@ -5,10 +5,10 @@ module Eyeson
     end
 
     def self.create!(url: nil, types: [])
-      webhook = Eyeson.post('/webhooks',
-                            url: url,
-                            types: types.join(','))
-      raise ValidationFailed, webhook['error'] if webhook['error'].present?
+      response = Eyeson.post('/webhooks',
+                             url: url,
+                             types: types.join(','))
+      raise ValidationFailed, response['error'] if response['error'].present?
     end
   end
 end

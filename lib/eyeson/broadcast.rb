@@ -9,12 +9,11 @@ module Eyeson
     end
 
     def create(platform: nil, stream_url: nil)
-      upload = Eyeson.post(
-        "/rooms/#{@access_key}/broadcasts",
-        platform:   platform,
-        stream_url: stream_url
-      )
-      raise ValidationFailed, upload['error'] if upload['error'].present?
+      response = Eyeson.post("/rooms/#{@access_key}/broadcasts",
+                             platform:   platform,
+                             stream_url: stream_url)
+
+      raise ValidationFailed, response['error'] if response['error'].present?
     end
 
     def destroy(platform: nil)

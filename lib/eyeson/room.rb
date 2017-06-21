@@ -12,15 +12,15 @@ module Eyeson
     end
 
     def self.join(id: nil, name: nil, user: {})
-      room = Eyeson.post('/rooms',
-                         id:   id,
-                         name: name,
-                         user: Account.mapped_user(user))
+      response = Eyeson.post('/rooms',
+                             id:   id,
+                             name: name,
+                             user: Account.mapped_user(user))
 
-      raise ValidationFailed, room['error'] if room['error'].present?
+      raise ValidationFailed, response['error'] if response['error'].present?
       Room.new(
-        url:        room['links']['gui'],
-        access_key: room['access_key']
+        url:        response['links']['gui'],
+        access_key: response['access_key']
       )
     end
   end
