@@ -39,13 +39,13 @@ Puts a user to a (specific) meeting room.
 If no arbitrary ids are given, random ids will be generated.
 
 ```ruby
-room = Eyeson::Room.new(id:   'ARBITRARY_ID',     # optional, e.g. to join a specific room
-                        name: 'DISPLAY_NAME',     # optional
-                        user: {
-                        	id:     'ARBITRARY_ID', # optional, e.g. your internal user_id
-                        	name:   'DISPLAY_NAME', # required!
-                        	avatar: 'IMAGE_URL'     # optional
-                        })
+room = Eyeson::Room.join(id:   'ARBITRARY_ID',     # optional, e.g. to join a specific room
+                         name: 'DISPLAY_NAME',     # optional
+                         user: {
+                        	 id:     'ARBITRARY_ID', # optional, e.g. your internal user_id
+                        	 name:   'DISPLAY_NAME', # required!
+                        	 avatar: 'IMAGE_URL'     # optional
+                         })
 ```
 
 The meeting room will be available immediately:
