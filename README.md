@@ -21,12 +21,12 @@ Eyeson.configure do |config|
 end
 ```
 
-## Receive webhooks of specific events
+## Receive webhooks for specific events
 
 ```ruby
 Eyeson::Webhook.create!(
-  url,                   # Webhooks will be sent to this URL
-  types: []              # currently supported: 'room_update', 'team_update', 'user_update', 'presentation_update', 'broadcast_update', 'file_update'
+  url,       # Webhooks will be sent to this URL
+  types: []  # currently supported: 'room_update', 'team_update', 'user_update', 'presentation_update', 'broadcast_update', 'file_update'
 )
 ```
 
@@ -57,12 +57,12 @@ The meeting room will be available immediately:
 redirect_to room.url
 ```
 
-### Upload a presentation file by remote URL
+### Upload a presentation file from remote URL
 
 Uploads and converts any external stored PDF file for presentation.
 
 ```ruby
-Eyeson::FileUpload.new(access_key).upload_from(file_url)
+Eyeson::FileUpload.new(access_key).upload_from('FILE_URL')
 ```
 
 ### Start a live broadcast (YouTube only at the moment)
@@ -70,7 +70,7 @@ Eyeson::FileUpload.new(access_key).upload_from(file_url)
 ```ruby
 Eyeson::Broadcast.new(access_key).create(
   platform:   'youtube',
-  stream_url: YOUTUBE_STREAM_URL
+  stream_url: 'YOUTUBE_STREAM_URL' # see YouTube documentation on how to get a stream url.
 )
 ```
 
@@ -78,7 +78,7 @@ Eyeson::Broadcast.new(access_key).create(
 
 ```ruby
 Eyeson::Broadcast.new(access_key).destroy(
-  platform:   'youtube'
+  platform: 'youtube'
 )
 ```
 
@@ -92,8 +92,8 @@ Eyeson::Broadcast.new(access_key).destroy_all
 
 ```ruby
 Eyeson::Message.new(access_key).create(
-  type:   'chat',
-  content: YOUR_MESSAGE
+  type:    'chat',
+  content: 'YOUR_MESSAGE'
 )
 ```
 
