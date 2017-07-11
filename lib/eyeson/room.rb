@@ -15,7 +15,7 @@ module Eyeson
       response = Eyeson.post('/rooms',
                              id:   id,
                              name: name,
-                             user: Account.mapped_user(user))
+                             user: user)
 
       raise ValidationFailed, response['error'] if response['error'].present?
       Room.new(

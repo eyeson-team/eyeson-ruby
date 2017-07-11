@@ -45,12 +45,4 @@ RSpec.describe Eyeson::Account, type: :class do
     Eyeson.expects(:response_for).returns('create_url' => url)
     expect(Eyeson::Account.find_or_initialize_by(user: user).confirmation_url).to eq(url)
   end
-
-  it 'should contain correct user fields in mapped_user' do
-    mapped = Eyeson::Account.mapped_user(user)
-    expect(mapped[:id]).to eq(user[:email])
-    expect(mapped[:email]).to eq(user[:email])
-    expect(mapped[:name]).to eq(user[:name])
-    expect(mapped[:avatar]).to eq(user[:avatar])
-  end
 end

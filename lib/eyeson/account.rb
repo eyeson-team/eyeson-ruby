@@ -11,7 +11,7 @@ module Eyeson
     end
 
     def self.find_or_initialize_by(user: {})
-      confirmed = confirmed?(user: mapped_user(user))
+      confirmed = confirmed?(user: user)
       confirmation_url = confirmed['create_url'] if confirmed.present?
       Account.new(confirmation_url: confirmation_url)
     end
@@ -30,15 +30,6 @@ module Eyeson
                    params: { user: user } }
       )
       Eyeson.response_for(req)
-    end
-
-    def self.mapped_user(user)
-      {
-        id:         user[:email],
-        email:      user[:email],
-        name:       user[:name],
-        avatar:     user[:avatar]
-      }
     end
   end
 end
