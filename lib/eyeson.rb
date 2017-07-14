@@ -17,7 +17,6 @@ end
 
 require_relative 'eyeson/config'
 require_relative 'eyeson/requests'
-require_relative 'eyeson/intercom'
 require_relative 'eyeson/account'
 require_relative 'eyeson/webhook'
 require_relative 'eyeson/room'
