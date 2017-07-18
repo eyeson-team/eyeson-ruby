@@ -8,10 +8,11 @@ module Eyeson
       @access_key = access_key
     end
 
-    def create(file: nil, url: nil, index: 1, layout: nil)
+    def create(file: nil, url: nil, insert: nil, index: 1, layout: nil)
       response = Eyeson.post("/rooms/#{@access_key}/layers",
                              file: file,
                              url: url,
+                             insert: insert,
                              'z-index' => index,
                              layout: layout)
 

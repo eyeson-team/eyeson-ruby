@@ -14,6 +14,7 @@ RSpec.describe Eyeson::Layer, type: :class do
     Eyeson.expects(:post).with('/rooms/access_key/layers',
                                 file: image,
                                 url: nil,
+                                insert: nil,
                                 'z-index' => -1,
                                 layout: nil).returns({})
     layer.create(file: image, index: -1)
@@ -24,6 +25,7 @@ RSpec.describe Eyeson::Layer, type: :class do
     Eyeson.expects(:post).with('/rooms/access_key/layers',
                                 file: nil,
                                 url: url,
+                                insert: nil,
                                 'z-index' => 1,
                                 layout: nil).returns({})
     layer.create(url: url)
@@ -34,9 +36,24 @@ RSpec.describe Eyeson::Layer, type: :class do
     Eyeson.expects(:post).with('/rooms/access_key/layers',
                                 file: nil,
                                 url: url,
+                                insert: nil,
                                 'z-index' => 1,
                                 layout: 'fixed').returns({})
     layer.create(url: url, layout: 'fixed')
+  end
+
+  it 'should set layer by insert' do
+    insert = {
+      title: 'Test',
+      content: 'Content'
+    }
+    Eyeson.expects(:post).with('/rooms/access_key/layers',
+                                file: nil,
+                                url: nil,
+                                insert: insert,
+                                'z-index' => 1,
+                                layout: 'fixed').returns({})
+    layer.create(insert: insert, layout: 'fixed')
   end
 
   it 'should clear layer by index' do

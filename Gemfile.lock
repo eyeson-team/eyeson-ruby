@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    eyeson (2.3.0)
+    eyeson (2.3.1)
       activesupport (~> 5.0)
       rest-client
 
