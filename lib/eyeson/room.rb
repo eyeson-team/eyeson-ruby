@@ -11,11 +11,12 @@ module Eyeson
       @access_key = access_key
     end
 
-    def self.join(id: nil, name: nil, user: {})
+    def self.join(id: nil, name: nil, user: {}, options: nil)
       response = Eyeson.post('/rooms',
-                             id:   id,
-                             name: name,
-                             user: user)
+                             id:      id,
+                             name:    name,
+                             user:    user,
+                             options: options)
 
       raise ValidationFailed, response['error'] if response['error'].present?
       Room.new(
