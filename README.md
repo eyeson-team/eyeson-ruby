@@ -108,5 +108,14 @@ Eyeson::Layer.new(access_key).create(
 )
 ```
 
+### Get download URL of a specific recording
+
+It is assumed that the recording_id is known (e.g. from a webhook request).
+
+```ruby
+recording = Eyeson::Recording.find(recording_id)
+redirect_to recording.url
+```
+
 ## License
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
