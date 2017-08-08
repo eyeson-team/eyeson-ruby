@@ -40,4 +40,19 @@ RSpec.describe Eyeson, type: :class do
     expects_api_response_with(body: false)
     expect(Eyeson.post('/test')).to eq({})
   end
+
+  it 'should provide a get method' do
+    Eyeson.expects(:request).with(:get, '/test', {})
+    Eyeson.get('/test')
+  end
+
+  it 'should provide a get method' do
+    Eyeson.expects(:request).with(:post, '/test', { test: true })
+    Eyeson.post('/test', { test: true })
+  end
+
+  it 'should provide a get method' do
+    Eyeson.expects(:request).with(:delete, '/test', {})
+    Eyeson.delete('/test')
+  end
 end

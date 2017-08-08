@@ -1,5 +1,10 @@
 # Provides REST methods
 module Eyeson
+  def get(path, params = {})
+    request(:get, path, params)
+  end
+  module_function :get
+
   def post(path, params = {})
     request(:post, path, params)
   end
