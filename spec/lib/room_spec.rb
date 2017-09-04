@@ -17,9 +17,16 @@ RSpec.describe Eyeson::Room, type: :class do
   end
 
   it 'should set acccessor variables after initialization' do
-    room = Eyeson::Room.new(url: Faker::Internet.url, access_key: '12345')
-    expect(room.url).to be_present
-    expect(room.access_key).to be_present
+    response = {
+      access_key: '12345',
+      links: {
+        gui: Faker::Internet.url
+      }
+    }.to_json
+    room = Eyeson::Room.new(response)
+    expect(room.url).to        eq(response['links']['gui'])
+    expect(room.access_key).to eq(response['access_key'])
+    expect(room.links).to      eq(response['links'])
   end
 
   it 'should return room instance after join' do

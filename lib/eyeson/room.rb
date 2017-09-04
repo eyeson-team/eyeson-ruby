@@ -4,11 +4,12 @@ module Eyeson
     class ValidationFailed < StandardError
     end
 
-    attr_reader :url, :access_key
+    attr_reader :url, :access_key, :links
 
-    def initialize(url: nil, access_key: nil)
-      @url        = url
-      @access_key = access_key
+    def initialize(response = {})
+      @url        = response['links']['gui']
+      @access_key = response['access_key']
+      @links      = response['links']
     end
 
     def self.join(id: nil, name: nil, user: {}, options: nil)
@@ -19,10 +20,7 @@ module Eyeson
                              options: options)
 
       raise ValidationFailed, response['error'] if response['error'].present?
-      Room.new(
-        url:        response['links']['gui'],
-        access_key: response['access_key']
-      )
+      Room.new(response)
     end
   end
 end
