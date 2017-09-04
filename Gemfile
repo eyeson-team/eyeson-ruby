@@ -2,8 +2,8 @@ source 'https://rubygems.org'
 
 gemspec
 
-gem 'rdoc'
 gem 'rake'
+gem 'rdoc'
 
 group :test do
   gem 'faker'
