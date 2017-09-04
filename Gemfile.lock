@@ -39,6 +39,7 @@ GEM
     rainbow (2.2.2)
       rake
     rake (12.0.0)
+    rdoc (5.1.0)
     rest-client (2.0.2)
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 4.0)
@@ -83,9 +84,11 @@ DEPENDENCIES
   eyeson!
   faker
   mocha
+  rake
+  rdoc
   rspec
   rubocop
   simplecov
 
 BUNDLED WITH
-   1.14.2
+   1.15.3
