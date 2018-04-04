@@ -26,7 +26,7 @@ end
 ```ruby
 Eyeson::Webhook.create!(
   url,       # Webhooks will be sent to this URL
-  types: []  # currently supported: 'room_update', 'team_update', 'user_update', 'presentation_update', 'broadcast_update', 'file_update'
+  types: []  # supported types: 'room', 'team', 'user', 'presentation', 'broadcast', 'file'
 )
 ```
 
