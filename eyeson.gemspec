@@ -8,9 +8,9 @@ Gem::Specification.new do |s|
   s.name        = 'eyeson'
   s.version     = Eyeson::VERSION
   s.authors     = ['Michael Maier']
-  s.email       = ['michael.maier@visocon.com']
+  s.email       = ['developers@eyeson.team']
   s.homepage    = 'https://www.eyeson.team/developers'
-  s.summary     = 'Eyeson API'
+  s.summary     = 'eyeson API'
   s.description = 'Use the eyeson api to boost your app with video conferencing'
   s.license     = 'MIT'
 

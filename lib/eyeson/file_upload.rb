@@ -16,7 +16,7 @@ module Eyeson
         attr_accessor :original_filename
       end
 
-      @file = open(url)
+      @file = File.open(url)
       @file.original_filename = File.basename(URI.parse(url).path)
 
       upload!
