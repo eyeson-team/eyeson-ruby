@@ -20,13 +20,15 @@ RSpec.describe Eyeson::FileUpload, type: :class do
     tempfile = mock('Tempfile')
     tempfile.expects(:original_filename=).with('my_file.pdf')
 
-    upload.expects(:open).with(url).returns(tempfile)
+    OpenURI.expects(:open_uri).returns tempfile
+
     upload.expects(:upload!)
     upload.upload_from(url)
   end
 
   it 'should raise errors' do
     expects_api_response_with(error: 'some_error')
-    expect { upload.send(:upload!) }.to raise_error(Eyeson::FileUpload::ValidationFailed, 'some_error')
+    expect { upload.send(:upload!) }.to \
+      raise_error(Eyeson::FileUpload::ValidationFailed, 'some_error')
   end
 end
