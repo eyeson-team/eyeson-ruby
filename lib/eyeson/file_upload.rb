@@ -1,3 +1,5 @@
+require 'open-uri'
+
 module Eyeson
   # Manages file uploads
   class FileUpload
@@ -16,8 +18,9 @@ module Eyeson
         attr_accessor :original_filename
       end
 
-      @file = File.open(url)
-      @file.original_filename = File.basename(URI.parse(url).path)
+      url = URI(url)
+      @file = OpenURI.open_uri url
+      @file.original_filename = File.basename url.path
 
       upload!
     end
