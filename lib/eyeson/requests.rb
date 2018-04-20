@@ -20,8 +20,11 @@ module Eyeson
       method: method,
       url: configuration.api_endpoint + path,
       payload: params.compact,
-      headers: { authorization: configuration.api_key,
-                 accept: 'application/json' }
+      headers: {
+        authorization: configuration.api_key,
+        accept: 'application/json',
+        user_agent: 'eyeson-ruby'
+      }
     )
     response_for(req)
   end
@@ -33,7 +36,7 @@ module Eyeson
     rescue RestClient::ExceptionWithResponse => e
       e.response
     end
-    return {} if res.body.blank?
+    return {} if res.body.empty?
     JSON.parse(res.body)
   end
   module_function :response_for
