@@ -1,4 +1,7 @@
 # Eyeson
+
+[![Build Status](https://travis-ci.org/eyeson-team/eyeson-ruby.svg?branch=master)](https://travis-ci.org/eyeson-team/eyeson-ruby)
+
 eyeson ruby sdk for service app implementation
 
 ## Installation
@@ -52,7 +55,7 @@ The meeting room will be available immediately:
 
 ```ruby
 # Temporary access key - only valid for current session:
-# access_key = room.access_key 
+# access_key = room.access_key
 
 redirect_to room.url
 ```

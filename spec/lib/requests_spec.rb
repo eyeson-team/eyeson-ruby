@@ -1,24 +1,25 @@
 require 'spec_helper'
 
 RSpec.describe Eyeson, type: :class do
-	it 'should use correct config in post' do
-		RestClient::Request.expects(:new).with(
+  it 'should use correct config in post' do
+    RestClient::Request.expects(:new).with(
       method: :post,
       url: 'https://api.localhost.test/test',
       payload: {},
       headers: {
         authorization: '123',
-        accept: 'application/json'
+        accept: 'application/json',
+        user_agent: 'eyeson-ruby'
       }
     )
     Eyeson.expects(:response_for)
     Eyeson.post('/test')
-	end
+  end
 
   it 'should execute request in response_for method' do
     body = { field: 'value' }.to_json
     res = mock('Response')
-    res.expects(:body).returns(body).twice
+    res.expects(:body).returns(body).times 3
     req = mock('Request', execute: res)
     JSON.expects(:parse).with(body)
     Eyeson.response_for(req)

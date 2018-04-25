@@ -3,7 +3,7 @@ PATH
   specs:
     eyeson (2.4.1)
       activesupport (~> 5.0)
-      rest-client
+      rest-client (~> 2.0.2)
 
 GEM
   remote: https://rubygems.org/
@@ -91,4 +91,4 @@ DEPENDENCIES
   simplecov
 
 BUNDLED WITH
-   1.15.3
+   1.16.1

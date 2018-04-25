@@ -36,7 +36,7 @@ module Eyeson
     rescue RestClient::ExceptionWithResponse => e
       e.response
     end
-    return {} if res.body.empty?
+    return {} if !res.body || res.body.empty?
     JSON.parse(res.body)
   end
   module_function :response_for
