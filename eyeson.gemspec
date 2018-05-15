@@ -7,7 +7,7 @@ require 'eyeson/version'
 Gem::Specification.new do |s|
   s.name        = 'eyeson'
   s.version     = Eyeson::VERSION
-  s.authors     = ['Michael Maier']
+  s.authors     = ['Michael Maier', 'Christoph Lipautz']
   s.email       = ['developers@eyeson.team']
   s.homepage    = 'https://www.eyeson.team/developers'
   s.summary     = 'eyeson API'
