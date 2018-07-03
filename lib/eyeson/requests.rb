@@ -1,3 +1,5 @@
+require 'json'
+
 # Provides REST methods
 module Eyeson
   def get(path, params = {})

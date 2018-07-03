@@ -19,7 +19,7 @@ module Eyeson
                              user:    user,
                              options: options)
 
-      raise ValidationFailed, response['error'] if response['error'].present?
+      raise ValidationFailed, response['error'] unless response['error'].nil?
       Room.new(response)
     end
   end
