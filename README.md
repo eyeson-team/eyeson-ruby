@@ -28,8 +28,8 @@ end
 
 ```ruby
 Eyeson::Webhook.create!(
-  url,       # Webhooks will be sent to this URL
-  types: []  # supported types: 'room', 'team', 'user', 'presentation', 'broadcast', 'file'
+  url: url, # Webhooks will be sent to this URL
+  types: [] # supported types: 'room', 'team', 'user', 'presentation', 'broadcast', 'file'
 )
 ```
 

@@ -9,12 +9,14 @@ RSpec.describe Eyeson::Recording, type: :class do
       }
     }
     Eyeson.expects(:get).with('/recordings/123').returns(response)
-    expect(Eyeson::Recording.find('123').url).to eq(response['links']['download'])
+    expect(Eyeson::Recording.find('123').url).to \
+      eq(response['links']['download'])
   end
 
   it 'should raise not found error' do
     Eyeson.expects(:get).returns({})
-    expect { Eyeson::Recording.find('123') }.to raise_error(Eyeson::Recording::NotFound)
+    expect { Eyeson::Recording.find('123') }.to \
+      raise_error(Eyeson::Recording::NotFound)
   end
 
   it 'should provide method to delete recording' do
