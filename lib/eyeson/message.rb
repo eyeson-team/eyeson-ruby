@@ -13,7 +13,7 @@ module Eyeson
                              type: type,
                              content: content)
 
-      raise ValidationFailed, response['error'] if response['error'].present?
+      raise ValidationFailed, response['error'] if response.key? 'error'
     end
   end
 end

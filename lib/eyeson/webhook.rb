@@ -8,7 +8,7 @@ module Eyeson
       response = Eyeson.post('/webhooks',
                              url: url,
                              types: types.join(','))
-      raise ValidationFailed, response['error'] if response['error'].present?
+      raise ValidationFailed, response['error'] if response.key? 'error'
     end
   end
 end

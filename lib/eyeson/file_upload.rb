@@ -29,7 +29,7 @@ module Eyeson
 
     def upload!
       response = Eyeson.post("/rooms/#{@access_key}/files", file: @file)
-      raise ValidationFailed, response['error'] if response['error'].present?
+      raise ValidationFailed, response['error'] if response.key? 'error'
     end
   end
 end

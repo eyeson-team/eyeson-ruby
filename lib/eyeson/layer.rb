@@ -16,7 +16,7 @@ module Eyeson
                              'z-index' => index,
                              layout: layout)
 
-      raise ValidationFailed, response['error'] if response['error'].present?
+      raise ValidationFailed, response['error'] if response.key? 'error'
     end
 
     def destroy(index: 1, layout: nil)

@@ -18,7 +18,7 @@ module Eyeson
   module_function :delete
 
   def request(method, path, params)
-    req = RestClient::Request.new(
+    response_for RestClient::Request.new(
       method: method,
       url: configuration.api_endpoint + path,
       payload: params.compact,
@@ -28,7 +28,6 @@ module Eyeson
         user_agent: 'eyeson-ruby'
       }
     )
-    response_for(req)
   end
   module_function :request
 

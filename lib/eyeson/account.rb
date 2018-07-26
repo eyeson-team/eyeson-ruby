@@ -14,7 +14,7 @@ module Eyeson
       confirmed = Eyeson.post('/internal/accounts',
                               user: user,
                               remote_ip: remote_ip)
-      confirmation_url = confirmed['create_url'] if confirmed.present?
+      confirmation_url = confirmed['create_url'] if confirmed
       Account.new(confirmation_url: confirmation_url)
     end
 

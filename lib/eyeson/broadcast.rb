@@ -13,7 +13,7 @@ module Eyeson
                              platform:   platform,
                              stream_url: stream_url)
 
-      raise ValidationFailed, response['error'] if response['error'].present?
+      raise ValidationFailed, response['error'] if response.key? 'error'
     end
 
     def destroy(platform: nil)
