@@ -16,6 +16,6 @@ Gem::Specification.new do |s|
 
   s.files = Dir['lib/**/*', 'MIT-LICENSE', 'Rakefile', 'README.md']
 
-  s.add_dependency 'activesupport', '~> 5.0'
-  s.add_dependency 'rest-client', '~> 2.0.2'
+  s.add_runtime_dependency 'activesupport', '~> 5.2', '>= 5.2.0'
+  s.add_runtime_dependency 'rest-client', '~> 2.0.2'
 end
